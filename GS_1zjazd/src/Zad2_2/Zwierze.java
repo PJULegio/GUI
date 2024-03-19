@@ -1,4 +1,4 @@
-package zad2_2;
+package Zad2_2;
 
 public class Zwierze implements IAnimalBehaviours {
 
