@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         /*{ // Zadanie 1
             Runnable runnableOut = () -> {
                 for(int i = 0; i < 20; i++)
@@ -43,11 +44,31 @@ public class Main {
             Account konto2 = new Account(10_000);
             System.out.println("Suma: " + (konto1.getBalance() + konto2.getBalance()));
 
+
+
             Runnable transakcje1 = () -> {
-                konto1.setBalance(-50);
-                konto2.setBalance(50);
+                int losowa = (int)(java.lang.Math.random() * 1000);
+                Account.transaction(losowa, konto1, konto2);
             };
 
+            Runnable transakcje2 = () -> {
+                int losowa = (int)(java.lang.Math.random() * 1000);
+                Account.transaction(losowa, konto2, konto1);
+            };
+
+            new Thread(transakcje1).start();
+            new Thread(transakcje1).start();
+            new Thread(transakcje1).start();
+            new Thread(transakcje1).start();
+            new Thread(transakcje2).start();
+            new Thread(transakcje2).start();
+            new Thread(transakcje2).start();
+            new Thread(transakcje2).start();
+
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println(konto1.getBalance());
+            System.out.println(konto2.getBalance());
+            System.out.println("Suma: " + (konto1.getBalance() + konto2.getBalance()));
         }
     }
     static HashMap<Integer, ArrayList<Long>> czasy = new HashMap<>(); // Zadanie 2
