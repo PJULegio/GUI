@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class Animal {
     private String name;
     private int weight;
@@ -10,4 +12,23 @@ public class Animal {
         this.height = height;
         this.topSpeed = topSpeed;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getTopSpeed() {
+        return topSpeed;
+    }
+
+    @Override
+    public String toString() { return name + " " + topSpeed; }
 }
